@@ -1,0 +1,768 @@
+{
+  "metadata": {
+    "client": "TechNova Solutions",
+    "workforce": 12000,
+    "annualTurnover": 16.1,
+    "costPerExit": 47600,
+    "monthlyQuota": 50,
+    "precisionAt50": 96.0,
+    "updatedAt": "2026-10-10"
+  },
+  "top50Watchlist": [
+    {
+      "rank": 1,
+      "EmployeeNumber": 1273,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1118,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 98.4,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,118 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $1,118 or award Level-1 stock options.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 2,
+      "EmployeeNumber": 622,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2340,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 98.4,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,340 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $2,340 or award Level-1 stock options.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 3,
+      "EmployeeNumber": 167,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1675,
+      "OverTime": "Yes",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 97.7,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,675 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $1,675 or award Level-1 stock options.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 4,
+      "EmployeeNumber": 1624,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1569,
+      "OverTime": "Yes",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 97.1,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,569 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $1,569 or award Level-1 stock options.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 5,
+      "EmployeeNumber": 1427,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1359,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 96.9,
+      "top_3_risk_reasons": "Monthly income $1,359 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover | Environment satisfaction rated 2/4",
+      "concrete_retention_recommendation": "2. Compensation Adjustment: Propose off-cycle salary bump from $1,359 or award Level-1 stock options.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 6,
+      "EmployeeNumber": 2023,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1790,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 96.8,
+      "top_3_risk_reasons": "Monthly income $1,790 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover | Job satisfaction rated 1/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $1,790 or award Level-1 stock options. \n3. Executive Mentorship: Arrange 1-on-1 career pathing session with Practice Lead.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 7,
+      "EmployeeNumber": 1487,
+      "JobRole": "Sales Executive",
+      "Department": "Sales",
+      "MonthlyIncome": 5765,
+      "OverTime": "No",
+      "YearsAtCompany": 5,
+      "risk_score_pct": 96.5,
+      "top_3_risk_reasons": "Job satisfaction rated 2/4 (urgent engagement concern) | Environment satisfaction rated 1/4 | Work-life balance reported at 1/4",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $5,765 or award Level-1 stock options. \n3. Executive Mentorship: Arrange 1-on-1 career pathing session with Practice Lead.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 8,
+      "EmployeeNumber": 959,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 2121,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 96.2,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,121 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $2,121 or award Level-1 stock options. \n3. Executive Mentorship: Arrange 1-on-1 career pathing session with Practice Lead.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 9,
+      "EmployeeNumber": 911,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2795,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 94.7,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,795 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "1. Workload Audit: Cap overtime hours; reassign sprint tasks to prevent burnout. \n2. Compensation Adjustment: Propose off-cycle salary bump from $2,795 or award Level-1 stock options.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 10,
+      "EmployeeNumber": 1928,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1091,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 93.7,
+      "top_3_risk_reasons": "Monthly income $1,091 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover | Job satisfaction rated 1/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "2. Compensation Adjustment: Propose off-cycle salary bump from $1,091 or award Level-1 stock options. \n3. Executive Mentorship: Arrange 1-on-1 career pathing session with Practice Lead.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 11,
+      "EmployeeNumber": 235,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 2325,
+      "OverTime": "No",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 93.1,
+      "top_3_risk_reasons": "Monthly income $2,325 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover | Job satisfaction rated 1/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 12,
+      "EmployeeNumber": 614,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1878,
+      "OverTime": "Yes",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 93.0,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,878 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 13,
+      "EmployeeNumber": 952,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 2413,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 92.5,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,413 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 14,
+      "EmployeeNumber": 514,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2285,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 91.7,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,285 is in the bottom quartile | Frequent business travel contributes to rapid burnout",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 15,
+      "EmployeeNumber": 1248,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 1859,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 91.6,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,859 is in the bottom quartile | Job satisfaction rated 2/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 16,
+      "EmployeeNumber": 816,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2319,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 91.1,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,319 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 17,
+      "EmployeeNumber": 1878,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2472,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 90.4,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,472 is in the bottom quartile | Job satisfaction rated 2/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 18,
+      "EmployeeNumber": 411,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 1200,
+      "OverTime": "No",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 90.1,
+      "top_3_risk_reasons": "Monthly income $1,200 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover | Under 1 year tenure (0 yrs); critical flight-risk window",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "No"
+    },
+    {
+      "rank": 19,
+      "EmployeeNumber": 1604,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2408,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 89.9,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,408 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 20,
+      "EmployeeNumber": 741,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2216,
+      "OverTime": "Yes",
+      "YearsAtCompany": 7,
+      "risk_score_pct": 89.8,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,216 is in the bottom quartile | Job satisfaction rated 2/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 21,
+      "EmployeeNumber": 1494,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 3172,
+      "OverTime": "Yes",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 89.5,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $3,172 below company median | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 22,
+      "EmployeeNumber": 1079,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 1416,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 89.4,
+      "top_3_risk_reasons": "Monthly income $1,416 is in the bottom quartile | Laboratory Technician role has high market poaching pressure | Job satisfaction rated 1/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 23,
+      "EmployeeNumber": 1868,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2439,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 88.8,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,439 is in the bottom quartile | Work-life balance reported at 2/4",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 24,
+      "EmployeeNumber": 1758,
+      "JobRole": "Sales Executive",
+      "Department": "Sales",
+      "MonthlyIncome": 8564,
+      "OverTime": "Yes",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 88.1,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Job satisfaction rated 1/4 (urgent engagement concern) | Environment satisfaction rated 1/4",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 25,
+      "EmployeeNumber": 19,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2028,
+      "OverTime": "Yes",
+      "YearsAtCompany": 4,
+      "risk_score_pct": 87.8,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,028 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 26,
+      "EmployeeNumber": 1714,
+      "JobRole": "Human Resources",
+      "Department": "Human Resources",
+      "MonthlyIncome": 1555,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 87.6,
+      "top_3_risk_reasons": "Monthly income $1,555 is in the bottom quartile | Human Resources role has high market poaching pressure | Under 1 year tenure (1 yrs); critical flight-risk window",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 27,
+      "EmployeeNumber": 1844,
+      "JobRole": "Human Resources",
+      "Department": "Human Resources",
+      "MonthlyIncome": 2335,
+      "OverTime": "Yes",
+      "YearsAtCompany": 2,
+      "risk_score_pct": 87.5,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,335 is in the bottom quartile | Human Resources role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 28,
+      "EmployeeNumber": 1016,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2600,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 87.2,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,600 is in the bottom quartile | Job satisfaction rated 1/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 29,
+      "EmployeeNumber": 1219,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2210,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 87.2,
+      "top_3_risk_reasons": "Monthly income $2,210 is in the bottom quartile | Laboratory Technician role has high market poaching pressure | Job satisfaction rated 2/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 30,
+      "EmployeeNumber": 1716,
+      "JobRole": "Sales Executive",
+      "Department": "Sales",
+      "MonthlyIncome": 12936,
+      "OverTime": "No",
+      "YearsAtCompany": 23,
+      "risk_score_pct": 87.1,
+      "top_3_risk_reasons": "Work-life balance reported at 1/4 | Frequent business travel contributes to rapid burnout | Stock Option Level is 0 (lacks long-term golden handcuffs)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 31,
+      "EmployeeNumber": 1108,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2313,
+      "OverTime": "Yes",
+      "YearsAtCompany": 2,
+      "risk_score_pct": 86.8,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,313 is in the bottom quartile | Job satisfaction rated 2/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 32,
+      "EmployeeNumber": 648,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 2033,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 86.8,
+      "top_3_risk_reasons": "Monthly income $2,033 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover | Job satisfaction rated 1/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 33,
+      "EmployeeNumber": 1279,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2625,
+      "OverTime": "No",
+      "YearsAtCompany": 2,
+      "risk_score_pct": 86.7,
+      "top_3_risk_reasons": "Monthly income $2,625 is in the bottom quartile | Laboratory Technician role has high market poaching pressure | Environment satisfaction rated 1/4",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 34,
+      "EmployeeNumber": 1175,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2515,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 85.9,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,515 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 35,
+      "EmployeeNumber": 701,
+      "JobRole": "Research Scientist",
+      "Department": "Research & Development",
+      "MonthlyIncome": 1009,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 85.9,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,009 is in the bottom quartile | Under 1 year tenure (1 yrs); critical flight-risk window",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 36,
+      "EmployeeNumber": 1331,
+      "JobRole": "Sales Representative",
+      "Department": "Sales",
+      "MonthlyIncome": 2302,
+      "OverTime": "Yes",
+      "YearsAtCompany": 3,
+      "risk_score_pct": 85.7,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,302 is in the bottom quartile | Sales Rep role experiences ~40% annual turnover",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 37,
+      "EmployeeNumber": 55,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2293,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 85.4,
+      "top_3_risk_reasons": "Monthly income $2,293 is in the bottom quartile | Laboratory Technician role has high market poaching pressure | Environment satisfaction rated 1/4",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 38,
+      "EmployeeNumber": 1944,
+      "JobRole": "Human Resources",
+      "Department": "Human Resources",
+      "MonthlyIncome": 2863,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 84.9,
+      "top_3_risk_reasons": "Monthly income $2,863 is in the bottom quartile | Human Resources role has high market poaching pressure | Job satisfaction rated 2/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 39,
+      "EmployeeNumber": 1974,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 1129,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 84.3,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,129 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "No"
+    },
+    {
+      "rank": 40,
+      "EmployeeNumber": 1933,
+      "JobRole": "Sales Executive",
+      "Department": "Sales",
+      "MonthlyIncome": 9854,
+      "OverTime": "Yes",
+      "YearsAtCompany": 2,
+      "risk_score_pct": 83.7,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Stock Option Level is 0 (lacks long-term golden handcuffs) | High total working years with marketable skillset",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 41,
+      "EmployeeNumber": 392,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 3161,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 83.3,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $3,161 below company median | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 42,
+      "EmployeeNumber": 1277,
+      "JobRole": "Manager",
+      "Department": "Sales",
+      "MonthlyIncome": 18824,
+      "OverTime": "Yes",
+      "YearsAtCompany": 24,
+      "risk_score_pct": 83.3,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Job satisfaction rated 2/4 (urgent engagement concern) | Environment satisfaction rated 1/4",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 43,
+      "EmployeeNumber": 1783,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2398,
+      "OverTime": "Yes",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 82.8,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,398 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 44,
+      "EmployeeNumber": 932,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2404,
+      "OverTime": "Yes",
+      "YearsAtCompany": 2,
+      "risk_score_pct": 82.2,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,404 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 45,
+      "EmployeeNumber": 1968,
+      "JobRole": "Sales Executive",
+      "Department": "Sales",
+      "MonthlyIncome": 10448,
+      "OverTime": "Yes",
+      "YearsAtCompany": 2,
+      "risk_score_pct": 82.2,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Job satisfaction rated 1/4 (urgent engagement concern) | Environment satisfaction rated 1/4",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 46,
+      "EmployeeNumber": 405,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 1420,
+      "OverTime": "No",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 82.1,
+      "top_3_risk_reasons": "Monthly income $1,420 is in the bottom quartile | Laboratory Technician role has high market poaching pressure | Under 1 year tenure (0 yrs); critical flight-risk window",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 47,
+      "EmployeeNumber": 1111,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2596,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 82.0,
+      "top_3_risk_reasons": "Monthly income $2,596 is in the bottom quartile | Laboratory Technician role has high market poaching pressure | Job satisfaction rated 2/4 (urgent engagement concern)",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 48,
+      "EmployeeNumber": 811,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 1601,
+      "OverTime": "Yes",
+      "YearsAtCompany": 0,
+      "risk_score_pct": 81.8,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $1,601 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 49,
+      "EmployeeNumber": 454,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2119,
+      "OverTime": "Yes",
+      "YearsAtCompany": 7,
+      "risk_score_pct": 81.6,
+      "top_3_risk_reasons": "Works overtime (3x higher historical attrition rate across company) | Monthly income $2,119 is in the bottom quartile | Laboratory Technician role has high market poaching pressure",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    },
+    {
+      "rank": 50,
+      "EmployeeNumber": 1107,
+      "JobRole": "Laboratory Technician",
+      "Department": "Research & Development",
+      "MonthlyIncome": 2377,
+      "OverTime": "No",
+      "YearsAtCompany": 1,
+      "risk_score_pct": 81.6,
+      "top_3_risk_reasons": "Monthly income $2,377 is in the bottom quartile | Laboratory Technician role has high market poaching pressure | Environment satisfaction rated 1/4",
+      "concrete_retention_recommendation": "Standard HR check-in and engagement survey.",
+      "Attrition": "Yes"
+    }
+  ],
+  "analytics": {
+    "overtime": [
+      {
+        "status": "Works OverTime (Yes)",
+        "attritionRate": 30.5,
+        "count": 416,
+        "color": "#F43F5E"
+      },
+      {
+        "status": "Standard Hours (No)",
+        "attritionRate": 10.4,
+        "count": 1054,
+        "color": "#10B981"
+      }
+    ],
+    "roles": [
+      {
+        "role": "Sales Representative",
+        "rate": 39.8
+      },
+      {
+        "role": "Laboratory Technician",
+        "rate": 23.9
+      },
+      {
+        "role": "Human Resources",
+        "rate": 23.1
+      },
+      {
+        "role": "Sales Executive",
+        "rate": 17.5
+      },
+      {
+        "role": "Research Scientist",
+        "rate": 16.1
+      },
+      {
+        "role": "Manufacturing Director",
+        "rate": 6.9
+      },
+      {
+        "role": "Healthcare Representative",
+        "rate": 6.9
+      },
+      {
+        "role": "Manager",
+        "rate": 4.9
+      },
+      {
+        "role": "Research Director",
+        "rate": 2.5
+      }
+    ],
+    "departments": [
+      {
+        "dept": "Sales",
+        "rate": 20.6,
+        "count": 446
+      },
+      {
+        "dept": "Human Resources",
+        "rate": 19.0,
+        "count": 63
+      },
+      {
+        "dept": "Research & Development",
+        "rate": 13.8,
+        "count": 961
+      }
+    ]
+  },
+  "models": {
+    "Baseline_Logistic_Regression": {
+      "roc_auc": 0.8107,
+      "pr_auc": 0.5568,
+      "accuracy": 0.7717,
+      "precision": 0.3737,
+      "recall": 0.6271,
+      "f1": 0.4684,
+      "capacity_metrics": {
+        "capacity_k": 13,
+        "true_positives_at_k": 12,
+        "precision_at_k": 0.9230769230769231,
+        "recall_at_k": 0.2033898305084746,
+        "base_rate": 0.16032608695652173,
+        "lift_multiplier": 5.757496740547588
+      }
+    },
+    "Champion_Gradient_Boosting": {
+      "roc_auc": 0.7948,
+      "pr_auc": 0.4663,
+      "accuracy": 0.8424,
+      "precision": 0.5294,
+      "recall": 0.1525,
+      "f1": 0.2368,
+      "capacity_metrics": {
+        "capacity_k": 13,
+        "true_positives_at_k": 8,
+        "precision_at_k": 0.6153846153846154,
+        "recall_at_k": 0.13559322033898305,
+        "base_rate": 0.16032608695652173,
+        "lift_multiplier": 3.838331160365059
+      }
+    }
+  }
+}
