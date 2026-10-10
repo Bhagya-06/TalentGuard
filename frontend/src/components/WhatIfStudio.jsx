@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
-import { Sliders, Sparkles, TrendingDown, DollarSign, ShieldCheck, ArrowRight } from 'lucide-react';
+import { SlidersHorizontal, Sparkles, TrendingDown, ShieldCheck } from 'lucide-react';
 
 export default function WhatIfStudio() {
-  // Baseline State
   const [role, setRole] = useState('Sales Representative');
   const [salary, setSalary] = useState(2800);
   const [overtime, setOvertime] = useState('Yes');
   const [satisfaction, setSatisfaction] = useState(1);
   const [tenure, setTenure] = useState(1);
+  const [salaryRaise, setSalaryRaise] = useState(15);
+  const [reduceHours, setReduceHours] = useState(true);
+  const [mentorSupport, setMentorSupport] = useState(true);
 
-  // Proposed Levers
-  const [salaryRaise, setSalaryRaise] = useState(15); // +15%
-  const [eliminateOT, setEliminateOT] = useState(true);
-  const [mentorship, setMentorship] = useState(true);
-
-  // Model-aligned risk heuristic based on trained weights
-  // Baseline probability calculation
   const calculateRisk = (r, s, ot, sat, ten) => {
     let logit = -1.2;
     if (r === 'Sales Representative') logit += 1.4;
@@ -23,7 +18,7 @@ export default function WhatIfStudio() {
     else if (r === 'Research Scientist') logit += 0.3;
     else if (r === 'Manager' || r === 'Research Director') logit -= 1.1;
 
-    if (ot === 'Yes') logit += 1.35; // 3x multiplier
+    if (ot === 'Yes') logit += 1.35;
     if (s < 3000) logit += 0.9;
     else if (s < 5000) logit += 0.3;
     else if (s > 10000) logit -= 0.8;
@@ -40,95 +35,54 @@ export default function WhatIfStudio() {
   };
 
   const baselineRisk = calculateRisk(role, salary, overtime, satisfaction, tenure);
-
-  // Mitigated calculation
   const newSalary = Math.round(salary * (1 + salaryRaise / 100));
-  const newOT = eliminateOT ? 'No' : overtime;
-  const newSat = mentorship ? Math.min(4, satisfaction + 1) : satisfaction;
+  const newOT = reduceHours ? 'No' : overtime;
+  const newSat = mentorSupport ? Math.min(4, satisfaction + 1) : satisfaction;
   const mitigatedRisk = calculateRisk(role, newSalary, newOT, newSat, tenure);
-
-  const deltaRisk = baselineRisk - mitigatedRisk;
-  const savedExposure = Math.round((salary * 7.5) * (deltaRisk / 100));
+  const riskDrop = baselineRisk - mitigatedRisk;
+  const savedExposure = Math.round((salary * 7.5) * (riskDrop / 100));
 
   return (
     <div>
       <div style={{ marginBottom: '1.25rem' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: 700, margin: 0 }}>
-          👤 Interactive What-If Countermeasure Studio
-        </h2>
-        <p style={{ fontSize: '0.82rem', color: '#94A3B8', marginTop: '2px' }}>
-          Simulate targeted retention levers in real time. Validate expected flight-risk reduction before presenting formal compensation or workload offers.
-        </p>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: '#213042' }}>What-if check</h2>
+        <p style={{ fontSize: '0.82rem', color: '#6a7a8f', marginTop: '0.25rem' }}>Try a few small changes and see how much risk goes down before an HR conversation starts.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.25fr)', gap: '1.5rem' }}>
-        {/* Left: Baseline Profile */}
-        <div className="glass-card">
+        <div className="glass-card" style={{ background: 'rgba(255,255,255,0.72)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-            <Sliders size={18} color="#818CF8" />
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0 }}>
-              1. Candidate Baseline Profile
-            </h3>
+            <SlidersHorizontal size={18} color="#4c7ef5" />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0, color: '#1f2d3d' }}>Current person</h3>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div>
-              <label style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
-                Job Role / Family
-              </label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="input-control"
-              >
-                <option value="Sales Representative">Sales Representative (High Churn ~40%)</option>
-                <option value="Laboratory Technician">Laboratory Technician (~24%)</option>
-                <option value="Research Scientist">Research Scientist (~16%)</option>
-                <option value="Sales Executive">Sales Executive (~17%)</option>
-                <option value="Manufacturing Director">Manufacturing Director (~7%)</option>
-                <option value="Manager">Manager (&lt;5%)</option>
+              <label style={{ fontSize: '0.75rem', color: '#6a7a8f', fontWeight: 600, display: 'block', marginBottom: '4px' }}>Job type</label>
+              <select value={role} onChange={(e) => setRole(e.target.value)} className="input-control">
+                <option value="Sales Representative">Sales Representative</option>
+                <option value="Laboratory Technician">Laboratory Technician</option>
+                <option value="Research Scientist">Research Scientist</option>
+                <option value="Sales Executive">Sales Executive</option>
+                <option value="Manufacturing Director">Manufacturing Director</option>
+                <option value="Manager">Manager</option>
               </select>
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '4px' }}>
-                <span style={{ color: '#94A3B8', fontWeight: 600 }}>Current Monthly Salary</span>
-                <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700 }}>${salary.toLocaleString()}/mo</span>
+                <span style={{ color: '#6a7a8f', fontWeight: 600 }}>Monthly pay</span>
+                <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, color: '#1f2d3d' }}>${salary.toLocaleString()}/mo</span>
               </div>
-              <input
-                type="range"
-                min="1500"
-                max="15000"
-                step="250"
-                value={salary}
-                onChange={(e) => setSalary(Number(e.target.value))}
-              />
+              <input type="range" min="1500" max="15000" step="250" value={salary} onChange={(e) => setSalary(Number(e.target.value))} />
             </div>
 
             <div>
-              <label style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
-                Chronic OverTime Status (3x Multiplier)
-              </label>
+              <label style={{ fontSize: '0.75rem', color: '#6a7a8f', fontWeight: 600, display: 'block', marginBottom: '4px' }}>Extra hours?</label>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 {['Yes', 'No'].map(val => (
-                  <button
-                    key={val}
-                    type="button"
-                    onClick={() => setOvertime(val)}
-                    style={{
-                      flex: 1,
-                      padding: '0.5rem',
-                      borderRadius: '8px',
-                      border: '1px solid',
-                      borderColor: overtime === val ? (val === 'Yes' ? '#F43F5E' : '#10B981') : 'rgba(255,255,255,0.08)',
-                      background: overtime === val ? (val === 'Yes' ? 'rgba(244,63,94,0.15)' : 'rgba(16,185,129,0.15)') : 'rgba(255,255,255,0.03)',
-                      color: overtime === val ? '#FFFFFF' : '#94A3B8',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      fontSize: '0.82rem'
-                    }}
-                  >
-                    {val === 'Yes' ? '⚠️ Yes (Overtime)' : '✓ Standard Hours'}
+                  <button key={val} type="button" onClick={() => setOvertime(val)} style={{ flex: 1, padding: '0.6rem', borderRadius: '8px', border: '1px solid', borderColor: overtime === val ? (val === 'Yes' ? '#e28a8a' : '#8ad0a8') : '#dfe6ef', background: overtime === val ? (val === 'Yes' ? 'rgba(217,98,98,0.09)' : 'rgba(43,143,110,0.08)') : '#FFFFFF', color: '#2b3d52', fontWeight: 700, cursor: 'pointer' }}>
+                    {val === 'Yes' ? 'Yes, a lot' : 'No, normal hours'}
                   </button>
                 ))}
               </div>
@@ -136,169 +90,72 @@ export default function WhatIfStudio() {
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '4px' }}>
-                <span style={{ color: '#94A3B8', fontWeight: 600 }}>Job Satisfaction Rating</span>
-                <span style={{ fontWeight: 700, color: satisfaction <= 2 ? '#FB7185' : '#34D399' }}>
-                  {satisfaction} / 4 ({satisfaction <= 1 ? 'Critical Low' : satisfaction === 2 ? 'Low' : satisfaction === 3 ? 'Good' : 'High'})
-                </span>
+                <span style={{ color: '#6a7a8f', fontWeight: 600 }}>Happiness score</span>
+                <span style={{ fontWeight: 700, color: satisfaction <= 2 ? '#c35151' : '#2b8f6e' }}>{satisfaction} / 4</span>
               </div>
-              <input
-                type="range"
-                min="1"
-                max="4"
-                step="1"
-                value={satisfaction}
-                onChange={(e) => setSatisfaction(Number(e.target.value))}
-              />
+              <input type="range" min="1" max="4" step="1" value={satisfaction} onChange={(e) => setSatisfaction(Number(e.target.value))} />
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '4px' }}>
-                <span style={{ color: '#94A3B8', fontWeight: 600 }}>Company Tenure</span>
-                <span style={{ fontFamily: 'var(--font-mono)' }}>{tenure} Year(s)</span>
+                <span style={{ color: '#6a7a8f', fontWeight: 600 }}>Time with the company</span>
+                <span style={{ fontFamily: 'var(--font-mono)', color: '#1f2d3d' }}>{tenure} year(s)</span>
               </div>
-              <input
-                type="range"
-                min="0"
-                max="15"
-                step="1"
-                value={tenure}
-                onChange={(e) => setTenure(Number(e.target.value))}
-              />
+              <input type="range" min="0" max="15" step="1" value={tenure} onChange={(e) => setTenure(Number(e.target.value))} />
             </div>
           </div>
         </div>
 
-        {/* Right: Countermeasure Levers & Real-Time Impact */}
-        <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', background: 'rgba(255,255,255,0.72)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Sparkles size={18} color="#A855F7" />
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0 }}>
-              2. Retention Countermeasures & Efficacy
-            </h3>
+            <Sparkles size={18} color="#7d63d6" />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0, color: '#1f2d3d' }}>Possible HR move</h3>
           </div>
 
-          {/* Interactive Levers */}
-          <div style={{
-            background: 'rgba(0, 0, 0, 0.25)',
-            padding: '1rem',
-            borderRadius: '12px',
-            border: '1px solid rgba(255, 255, 255, 0.06)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem'
-          }}>
+          <div style={{ background: '#f7f9fd', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(93,108,131,0.12)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: '4px' }}>
-                <span style={{ fontWeight: 600, color: '#E2E8F0' }}>Proposed Salary Adjustment</span>
-                <span style={{ color: '#38BDF8', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
-                  +{salaryRaise}% (${newSalary.toLocaleString()}/mo)
-                </span>
+                <span style={{ fontWeight: 600, color: '#5e6f88' }}>Pay increase</span>
+                <span style={{ color: '#446bd3', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>+{salaryRaise}% (${newSalary.toLocaleString()}/mo)</span>
               </div>
-              <input
-                type="range"
-                min="0"
-                max="40"
-                step="5"
-                value={salaryRaise}
-                onChange={(e) => setSalaryRaise(Number(e.target.value))}
-              />
+              <input type="range" min="0" max="40" step="5" value={salaryRaise} onChange={(e) => setSalaryRaise(Number(e.target.value))} />
             </div>
 
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', fontSize: '0.85rem' }}>
-              <input
-                type="checkbox"
-                checked={eliminateOT}
-                onChange={(e) => setEliminateOT(e.target.checked)}
-                style={{ width: '16px', height: '16px', accentColor: '#6366F1' }}
-              />
-              <span>
-                <strong>Workload Cap:</strong> Eliminate Overtime & Rebalance Sprint Tasks
-              </span>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', fontSize: '0.85rem', color: '#2a3d58' }}>
+              <input type="checkbox" checked={reduceHours} onChange={(e) => setReduceHours(e.target.checked)} style={{ width: '16px', height: '16px', accentColor: '#5b6ee1' }} />
+              <span>Cut overtime and rebalance work</span>
             </label>
 
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', fontSize: '0.85rem' }}>
-              <input
-                type="checkbox"
-                checked={mentorship}
-                onChange={(e) => setMentorship(e.target.checked)}
-                style={{ width: '16px', height: '16px', accentColor: '#6366F1' }}
-              />
-              <span>
-                <strong>Executive Mentorship:</strong> Fast-Track Career Growth Roadmap (+1 Satisfaction)
-              </span>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', cursor: 'pointer', fontSize: '0.85rem', color: '#2a3d58' }}>
+              <input type="checkbox" checked={mentorSupport} onChange={(e) => setMentorSupport(e.target.checked)} style={{ width: '16px', height: '16px', accentColor: '#5b6ee1' }} />
+              <span>Give a mentor and clear growth steps</span>
             </label>
           </div>
 
-          {/* Live Outcome Comparison */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '0.75rem',
-            marginTop: '0.5rem'
-          }}>
-            <div style={{
-              background: 'rgba(244, 63, 94, 0.08)',
-              border: '1px solid rgba(244, 63, 94, 0.25)',
-              borderRadius: '12px',
-              padding: '0.85rem',
-              textAlign: 'center'
-            }}>
-              <div style={{ fontSize: '0.72rem', color: '#FDA4AF', fontWeight: 700, textTransform: 'uppercase' }}>
-                Baseline Risk
-              </div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#FB7185', fontFamily: 'var(--font-mono)' }}>
-                {baselineRisk.toFixed(1)}%
-              </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '0.75rem' }}>
+            <div style={{ background: 'rgba(217,98,98,0.08)', border: '1px solid rgba(217,98,98,0.18)', borderRadius: '12px', padding: '0.85rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: '#b64c4c', fontWeight: 700, textTransform: 'uppercase' }}>Now</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#c35151', fontFamily: 'var(--font-mono)' }}>{baselineRisk.toFixed(1)}%</div>
             </div>
-
-            <div style={{
-              background: 'rgba(16, 185, 129, 0.08)',
-              border: '1px solid rgba(16, 185, 129, 0.25)',
-              borderRadius: '12px',
-              padding: '0.85rem',
-              textAlign: 'center'
-            }}>
-              <div style={{ fontSize: '0.72rem', color: '#6EE7B7', fontWeight: 700, textTransform: 'uppercase' }}>
-                Mitigated Risk
-              </div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#34D399', fontFamily: 'var(--font-mono)' }}>
-                {mitigatedRisk.toFixed(1)}%
-              </div>
+            <div style={{ background: 'rgba(43,143,110,0.08)', border: '1px solid rgba(43,143,110,0.18)', borderRadius: '12px', padding: '0.85rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: '#1d7359', fontWeight: 700, textTransform: 'uppercase' }}>After</div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#2b8f6e', fontFamily: 'var(--font-mono)' }}>{mitigatedRisk.toFixed(1)}%</div>
             </div>
-
-            <div style={{
-              background: 'rgba(99, 102, 241, 0.08)',
-              border: '1px solid rgba(99, 102, 241, 0.25)',
-              borderRadius: '12px',
-              padding: '0.85rem',
-              textAlign: 'center'
-            }}>
-              <div style={{ fontSize: '0.72rem', color: '#A5B4FC', fontWeight: 700, textTransform: 'uppercase' }}>
-                Capital Saved
-              </div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#818CF8', fontFamily: 'var(--font-mono)' }}>
-                ${savedExposure.toLocaleString()}
-              </div>
+            <div style={{ background: 'rgba(76,126,245,0.08)', border: '1px solid rgba(76,126,245,0.18)', borderRadius: '12px', padding: '0.85rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: '#3f6ad1', fontWeight: 700, textTransform: 'uppercase' }}>Saved</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#4c7ef5', fontFamily: 'var(--font-mono)' }}>${savedExposure.toLocaleString()}</div>
             </div>
           </div>
 
-          {/* Visual Delta Progress Comparison */}
-          <div style={{ marginTop: '0.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: '6px' }}>
-              <span style={{ color: '#94A3B8' }}>Risk Reduction Delta</span>
-              <span style={{ color: '#34D399', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
-                ↓ {deltaRisk.toFixed(1)}% Reduction
-              </span>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', background: '#eefaf3', border: '1px solid #d3f0df', borderRadius: '12px', padding: '0.9rem 1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ShieldCheck size={18} color="#2b8f6e" />
+              <div>
+                <div style={{ fontSize: '0.76rem', color: '#1d7359', fontWeight: 700, textTransform: 'uppercase' }}>Likely effect</div>
+                <div style={{ fontSize: '0.9rem', color: '#1d7359', fontWeight: 700 }}>{riskDrop.toFixed(1)} points lower risk</div>
+              </div>
             </div>
-            <div className="progress-track" style={{ height: '10px' }}>
-              <div
-                className="progress-fill"
-                style={{
-                  width: `${baselineRisk}%`,
-                  background: 'linear-gradient(90deg, #10B981 0%, #F59E0B 50%, #F43F5E 100%)'
-                }}
-              />
-            </div>
+            <TrendingDown size={18} color="#2b8f6e" />
           </div>
         </div>
       </div>

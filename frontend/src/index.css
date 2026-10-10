@@ -1,60 +1,51 @@
 /* ==============================================================================
-   TALENTO UI KIT DESIGN SYSTEM (Inspire by Talento HR Management App)
-   Clean, Friendly, Modern Enterprise SaaS with Crisp Pastels & Gradients
+   TALENTGUARD — SOFT LIGHT THEME
+   Muted, eye-friendly surfaces with a calm professional look.
 ============================================================================== */
 
 :root {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Talento Modern Light Palette */
-  --bg-app: #F8FAFC;
-  --bg-surface: #FFFFFF;
-  --bg-subtle: #F1F5F9;
-  
-  --border-subtle: #E2E8F0;
-  --border-card: #ECEEF2;
-  
-  /* Talento Royal Brand Gradient */
-  --primary: #5B4DFB;
-  --primary-hover: #4B3DF5;
-  --primary-gradient: linear-gradient(135deg, #5B4DFB 0%, #7B68EE 100%);
-  --primary-glow: rgba(91, 77, 251, 0.25);
-  
-  /* Status Accent Colors (From Talento UI Kit) */
-  --accent-red: #FF6B6B;
-  --accent-red-bg: #FFF5F5;
-  --accent-red-border: #FFC9C9;
-  
-  --accent-green: #20C997;
-  --accent-green-bg: #E6FCF5;
-  --accent-green-border: #96F2D7;
-  
-  --accent-orange: #FF922B;
-  --accent-orange-bg: #FFF4E6;
-  --accent-orange-border: #FFD8A8;
-  
-  --accent-blue: #339AF0;
-  --accent-blue-bg: #E7F5FF;
-  --accent-blue-border: #A5D8FF;
-  
-  --accent-purple: #845EF7;
-  --accent-purple-bg: #F3F0FF;
-  --accent-purple-border: #D0BFFF;
+  --bg-app: #f3efe8;
+  --bg-surface: #f8f5f0;
+  --bg-soft: #f0efe9;
+  --bg-elevated: #ffffff;
 
-  /* Typography */
-  --text-title: #0F172A;
-  --text-body: #334155;
-  --text-muted: #64748B;
-  --text-dim: #94A3B8;
-  
+  --border: rgba(93, 108, 131, 0.18);
+  --border-strong: rgba(93, 108, 131, 0.25);
+
+  --text-strong: #1f2d3d;
+  --text-body: #42516a;
+  --text-muted: #6a7a8f;
+
+  --primary: #5b6ee1;
+  --primary-soft: #edf2ff;
+  --accent: #4c7ef5;
+  --accent-soft: rgba(76, 126, 245, 0.12);
+  --success: #2b8f6e;
+  --danger: #d96262;
+  --warning: #d29939;
+
+  --badge-red-bg: rgba(217, 98, 98, 0.12);
+  --badge-red-text: #bf3b3b;
+  --badge-red-border: rgba(191, 59, 59, 0.2);
+
+  --badge-green-bg: rgba(43, 143, 110, 0.12);
+  --badge-green-text: #1d7359;
+  --badge-green-border: rgba(29, 115, 89, 0.2);
+
+  --badge-amber-bg: rgba(210, 153, 57, 0.12);
+  --badge-amber-text: #a96d1a;
+  --badge-amber-border: rgba(169, 109, 26, 0.2);
+
   --radius-sm: 10px;
   --radius-md: 16px;
-  --radius-lg: 22px;
+  --radius-lg: 20px;
   --radius-full: 9999px;
-  
-  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-  --shadow-hover: 0 10px 25px -3px rgba(15, 23, 42, 0.08);
+
+  --shadow-soft: 0 12px 26px rgba(76, 91, 112, 0.10);
+  --shadow-card: 0 16px 40px rgba(74, 90, 106, 0.09);
 }
 
 * {
@@ -63,310 +54,301 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-app);
+  background:
+    radial-gradient(circle at top, rgba(91, 110, 225, 0.10), transparent 26%),
+    radial-gradient(circle at center, rgba(91, 110, 225, 0.06), transparent 30%),
+    var(--bg-app);
   color: var(--text-body);
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
 }
 
-/* Custom Scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-app);
-}
-::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: var(--radius-full);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+button, input, select {
+  font: inherit;
 }
 
-/* App Container */
 .app-container {
-  max-width: 1440px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 1.5rem 2rem 3rem 2rem;
+  padding: 1.25rem 1.5rem 3rem;
 }
 
-/* ==============================================================================
-   TALENTO CARDS & SURFACES
-============================================================================== */
-.talento-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-card);
-  border-radius: var(--radius-md);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-card);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.talento-card:hover {
-  box-shadow: var(--shadow-hover);
-  border-color: #E2E8F0;
-}
-
-/* The Vibrant Talento Hero Balance Card */
-.talento-balance-card {
-  background: linear-gradient(135deg, #5B4DFB 0%, #6E56CF 50%, #7C3AED 100%);
+.talento-card,
+.talento-balance-card,
+.talento-status-box,
+.table-wrapper,
+.glass-card {
   border-radius: var(--radius-lg);
-  padding: 1.75rem 2rem;
-  color: #FFFFFF;
-  box-shadow: 0 12px 30px -8px rgba(91, 77, 251, 0.4);
-  position: relative;
-  overflow: hidden;
-}
-.talento-balance-card::after {
-  content: "";
-  position: absolute;
-  top: -40%;
-  right: -10%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
 }
 
-/* Talento Pill Category Boxes (From inspiration image) */
+.talento-card {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 1.4rem 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.talento-balance-card {
+  background: linear-gradient(135deg, #f4f7ff 0%, #eef4ff 100%);
+  border: 1px solid rgba(95, 120, 180, 0.12);
+  box-shadow: 0 18px 35px rgba(93, 108, 131, 0.08);
+  padding: 1.5rem 1.4rem;
+  color: var(--text-strong);
+}
+
 .talento-status-box {
-  background: var(--bg-surface);
-  border-radius: var(--radius-md);
-  padding: 1.15rem 1.25rem;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  padding: 1rem 1.05rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1.5px solid;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
+
 .talento-status-box:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(93, 108, 131, 0.12);
+  border-color: rgba(93, 108, 131, 0.2);
 }
 
-.talento-status-box.red {
-  border-color: var(--accent-red);
-  background: #FFFBFB;
-}
-.talento-status-box.orange {
-  border-color: var(--accent-orange);
-  background: #FFFDF9;
-}
-.talento-status-box.green {
-  border-color: var(--accent-green);
-  background: #F8FDFB;
-}
-.talento-status-box.blue {
-  border-color: var(--accent-blue);
-  background: #F8FBFE;
+.glass-card {
+  background: rgba(255,255,255,0.78);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  padding: 1.2rem 1.4rem;
 }
 
-/* Avatar Group (Overlapping circles like inspiration UI) */
-.avatar-group {
-  display: flex;
-  align-items: center;
-}
-.avatar-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid #FFFFFF;
-  margin-left: -8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-}
-.avatar-circle:first-child {
-  margin-left: 0;
-}
-
-/* ==============================================================================
-   BUTTON DESIGN SYSTEM
-============================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 0.86rem;
-  padding: 0.65rem 1.25rem;
-  border-radius: var(--radius-sm);
-  border: none;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: #FFFFFF;
-  box-shadow: 0 4px 14px var(--primary-glow);
-}
-.btn-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(91, 77, 251, 0.35);
+  background: linear-gradient(135deg, #5d6ee8 0%, #4f7cf2 100%);
+  color: #ffffff;
 }
 
-.btn-white {
-  background: #FFFFFF;
-  color: var(--primary);
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-.btn-white:hover {
-  background: #F8FAFC;
-  transform: translateY(-1px);
+.btn-blue {
+  background: linear-gradient(135deg, #5a75e4 0%, #4c7ef5 100%);
+  color: white;
 }
 
 .btn-secondary {
-  background: #F1F5F9;
-  color: var(--text-body);
-}
-.btn-secondary:hover {
-  background: #E2E8F0;
+  background: rgba(91, 110, 225, 0.06);
+  color: var(--text-strong);
+  border-color: var(--border);
 }
 
 .btn-pill {
-  border-radius: var(--radius-full);
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
+  padding: 0.7rem 1.1rem;
+  font-size: 0.78rem;
 }
 
-/* ==============================================================================
-   BADGES & PILLS
-============================================================================== */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.28rem 0.75rem;
+  gap: 0.3rem;
+  padding: 0.28rem 0.7rem;
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .badge-red {
-  background: var(--accent-red-bg);
-  color: #E03131;
-  border: 1px solid var(--accent-red-border);
+  background: var(--badge-red-bg);
+  color: var(--badge-red-text);
+  border: 1px solid var(--badge-red-border);
 }
+
 .badge-green {
-  background: var(--accent-green-bg);
-  color: #099268;
-  border: 1px solid var(--accent-green-border);
-}
-.badge-orange {
-  background: var(--accent-orange-bg);
-  color: #E8590C;
-  border: 1px solid var(--accent-orange-border);
-}
-.badge-purple {
-  background: var(--accent-purple-bg);
-  color: var(--primary);
-  border: 1px solid var(--accent-purple-border);
+  background: var(--badge-green-bg);
+  color: var(--badge-green-text);
+  border: 1px solid var(--badge-green-border);
 }
 
-/* ==============================================================================
-   INPUTS & SLIDERS
-============================================================================== */
+.badge-amber {
+  background: var(--badge-amber-bg);
+  color: var(--badge-amber-text);
+  border: 1px solid var(--badge-amber-border);
+}
+
+.badge-dark {
+  background: rgba(93, 108, 131, 0.08);
+  color: var(--text-strong);
+  border: 1px solid var(--border);
+}
+
+.badge-retained {
+  background: var(--badge-green-bg);
+  color: var(--badge-green-text);
+  border: 1px solid var(--badge-green-border);
+}
+
 .input-control {
-  background: #F8FAFC;
-  border: 1.5px solid var(--border-subtle);
-  color: var(--text-title);
-  padding: 0.65rem 1rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-sans);
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  color: var(--text-strong);
   font-size: 0.86rem;
-  outline: none;
-  transition: all 0.2s ease;
-  width: 100%;
+  padding: 0.72rem 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
 .input-control:focus {
-  border-color: var(--primary);
-  background: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(91, 77, 251, 0.15);
-}
-
-/* Custom Sliders */
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 6px;
-  background: #E2E8F0;
-  border-radius: var(--radius-full);
   outline: none;
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--primary);
-  cursor: pointer;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 2px 6px rgba(91, 77, 251, 0.4);
-  transition: transform 0.1s ease;
-}
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
+  border-color: rgba(76, 126, 245, 0.7);
+  box-shadow: 0 0 0 3px rgba(76, 126, 245, 0.12);
 }
 
-/* ==============================================================================
-   DATA TABLE STYLING
-============================================================================== */
-.table-wrapper {
-  overflow-x: auto;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-subtle);
-  background: #FFFFFF;
+select.input-control {
+  appearance: none;
 }
+
+.table-wrapper {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.72);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
 .custom-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.86rem;
+  font-size: 0.85rem;
 }
+
 .custom-table th {
-  background: #F8FAFC;
-  padding: 0.85rem 1.15rem;
-  font-size: 0.72rem;
+  background: rgba(244, 247, 251, 0.9);
+  padding: 0.8rem 1rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  border-bottom: 1.5px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border);
 }
+
 .custom-table td {
-  padding: 0.85rem 1.15rem;
-  border-bottom: 1px solid #F1F5F9;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(93, 108, 131, 0.08);
   color: var(--text-body);
 }
-.custom-table tr:hover td {
-  background: #F8FAFC;
+
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f8fafc;
+  font-size: 0.62rem;
+  font-weight: 700;
+  border: 1px solid rgba(255,255,255,0.4);
+  margin-left: -4px;
+}
+
+.avatar-circle:first-child {
+  margin-left: 0;
 }
 
 .progress-track {
   width: 100%;
-  height: 6px;
-  background: #EDF2F7;
-  border-radius: var(--radius-full);
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(93, 108, 131, 0.14);
   overflow: hidden;
 }
+
 .progress-fill {
   height: 100%;
-  border-radius: var(--radius-full);
-  transition: width 0.4s ease;
+  border-radius: inherit;
 }
+
+body, html, #root {
+  min-height: 100%;
+}
+
+.custom-table tr:hover td {
+  background: #f7fafc;
+}
+
+.progress-track {
+  width: 100%;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: #edf2f7;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.63rem;
+  font-weight: 700;
+  color: white;
+  border: 2px solid white;
+  margin-left: -6px;
+}
+
+.avatar-circle:first-child {
+  margin-left: 0;
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    padding: 1rem 0.9rem 2.5rem;
+  }
+
+  .talento-card,
+  .talento-balance-card,
+  .talento-status-box,
+  .glass-card {
+    border-radius: 14px;
+  }
+}
+

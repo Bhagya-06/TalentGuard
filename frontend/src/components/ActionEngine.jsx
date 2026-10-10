@@ -14,48 +14,26 @@ export default function ActionEngine({ watchlist }) {
     setTimeout(() => {
       const exitCostMin = Math.round(candidate.MonthlyIncome * 6);
       const exitCostMax = Math.round(candidate.MonthlyIncome * 9);
-      
-      const memoText = `================================================================================
-TALENTGUARD™ AGENTIC WORKFLOW — AUTONOMOUS RETENTION MEMO
-================================================================================
-STATUS: [PENDING_APPROVAL — HR BUSINESS PARTNER SIGN-OFF REQUIRED]
-TIMESTAMP: ${new Date().toISOString().replace('T', ' ').slice(0, 19)}
-PRIORITY BAND: ${candidate.risk_score_pct >= 75 ? 'CRITICAL / IMMEDIATE ACTION REQUIRED' : 'HIGH PRIORITY'}
---------------------------------------------------------------------------------
-1. EMPLOYEE EXECUTIVE PROFILE:
-• Employee ID: #${candidate.EmployeeNumber}
-• Job Title: ${candidate.JobRole} (${candidate.Department})
-• Tenure: ${candidate.YearsAtCompany} Year(s) | Current Monthly Compensation: $${candidate.MonthlyIncome.toLocaleString()}
-• Predicted Attrition Risk: ${candidate.risk_score_pct}% (Top-Decile Operational Risk)
-• Organizational Financial Exposure if Lost: $${exitCostMin.toLocaleString()} – $${exitCostMax.toLocaleString()}
 
-2. DIAGNOSED ROOT FLIGHT DRIVERS:
-${candidate.top_3_risk_reasons}
+      const memoText = `Subject: Follow-up conversation and stay support for Employee #${candidate.EmployeeNumber}
 
-3. PRESCRIBED RETENTION ACTION PLAN:
-[x] Step 1: Schedule Confidential 1-on-1 Stay Interview within 5 business days.
-[x] Step 2: Workload Review — ${candidate.OverTime === 'Yes' ? 'Cap chronic overtime hours; rebalance sprint dependencies.' : 'Assess project autonomy and sprint friction.'}
-[x] Step 3: Compensation & Equity Parity — Evaluate off-cycle adjustment to market P50/P75 band.
-[ ] Step 4: Executive Mentorship — Pair with Practice Lead for structured growth trajectory.
+Hello,
 
-4. DRAFTED 1-ON-1 STAY INTERVIEW INVITATION:
---------------------------------------------------------------------------------
-Subject: Checking in & your future growth at TechNova
+I wanted to check in about how things are going and make sure we are supporting your work and growth. Based on the current review, we see a few areas to watch: workload pressure, market pay alignment, and long-term role satisfaction.
 
-Hi ${candidate.JobRole.split(' ')[0]} Team Member,
+From the current review, this role is showing some risk signals. The main items we are seeing are:
+- workload pressure from ${candidate.OverTime === 'Yes' ? 'regular overtime' : 'day-to-day project demands'}
+- market pay gap compared with similar roles
+- need for more clarity on growth and career path
 
-I wanted to take some dedicated time next week for a casual check-in. You've made 
-valuable contributions to our team over the last ${candidate.YearsAtCompany} year(s), and I want to ensure 
-we are actively supporting your work-life balance, project satisfaction, and long-term 
-career aspirations at TechNova.
+The most practical next step is a short check-in with HR and the manager within the next few days. We can review workload, discuss support options, and look at what would help you stay and grow here.
 
-Let's grab 30 minutes over coffee or virtual chat to discuss how things are feeling 
-and where you'd like to steer your path next.
+Estimated impact if we do not act: around $${exitCostMin.toLocaleString()} to $${exitCostMax.toLocaleString()} in replacement and transition cost.
 
-Best regards,
-People & Culture Business Partner
-TechNova Solutions Global
-================================================================================`;
+I would like to schedule a brief conversation next week to talk through what support would help most. Please let me know a time that works for you.
+
+Best,
+HR Team`;
       setGeneratedMemo(memoText);
       setIsGenerating(false);
     }, 400);
@@ -70,39 +48,38 @@ TechNova Solutions Global
 
   const handleDownload = () => {
     if (!generatedMemo) return;
-    const blob = new Blob([generatedMemo], { type: 'text/markdown' });
+    const blob = new Blob([generatedMemo], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `TechNova_RetentionMemo_Emp_${candidate.EmployeeNumber}.md`;
+    link.download = `RetentionEmail_Emp_${candidate.EmployeeNumber}.txt`;
     link.click();
   };
 
   return (
     <div>
       <div style={{ marginBottom: '1.25rem' }}>
-        <h2 style={{ fontSize: '1.35rem', fontWeight: 700, margin: 0 }}>
-          🤖 Autonomous Retention Action Generator
+        <h2 style={{ fontSize: '1.35rem', fontWeight: 700, margin: 0, color: '#213042' }}>
+          🤖 Quick action note
         </h2>
-        <p style={{ fontSize: '0.82rem', color: '#94A3B8', marginTop: '2px' }}>
-          Agentic synthesis engine that diagnoses employee flight factors, estimates cost exposure, and auto-drafts a personalized Stay-Interview briefing memo for HRBP sign-off.
+        <p style={{ fontSize: '0.82rem', color: '#6a7a8f', marginTop: '2px' }}>
+          Pick a person and create a short note for the next HR follow-up.
         </p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) minmax(0, 1.8fr)', gap: '1.5rem' }}>
-        {/* Left: Candidate Selector */}
-        <div className="glass-card">
+        <div className="glass-card" style={{ background: 'rgba(255,255,255,0.72)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-            <Bot size={18} color="#A855F7" />
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0 }}>
+            <Bot size={18} color="#5b6ee1" />
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: 0, color: '#1f2d3d' }}>
               Select Candidate
             </h3>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div>
-              <label style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
-                Priority Cohort Member
+              <label style={{ fontSize: '0.75rem', color: '#6a7a8f', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+                Person to follow up
               </label>
               <select
                 value={selectedId}
@@ -113,7 +90,7 @@ TechNova Solutions Global
                 className="input-control"
               >
                 {watchlist.slice(0, 20).map(c => (
-                  <option key={c.EmployeeNumber} value={c.EmployeeNumber} style={{ background: '#0F172A' }}>
+                  <option key={c.EmployeeNumber} value={c.EmployeeNumber} style={{ background: '#eef2ff' }}>
                     Rank #{c.rank} • Emp #{c.EmployeeNumber} ({c.JobRole} - {c.risk_score_pct}%)
                   </option>
                 ))}
@@ -121,50 +98,61 @@ TechNova Solutions Global
             </div>
 
             <div style={{
-              background: 'rgba(0, 0, 0, 0.25)',
+              background: '#f8f9fd',
               padding: '1rem',
               borderRadius: '12px',
-              border: '1px solid rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(93,108,131,0.12)',
               fontSize: '0.82rem',
-              lineHeight: 1.8
+              lineHeight: 1.8,
+              color: '#42516a'
             }}>
-              <div><strong style={{ color: '#E2E8F0' }}>Role:</strong> {candidate.JobRole} ({candidate.Department})</div>
-              <div><strong style={{ color: '#E2E8F0' }}>Monthly Salary:</strong> ${candidate.MonthlyIncome.toLocaleString()}</div>
-              <div><strong style={{ color: '#E2E8F0' }}>OverTime:</strong> {candidate.OverTime}</div>
+              <div><strong style={{ color: '#1f2d3d' }}>Role:</strong> {candidate.JobRole} ({candidate.Department})</div>
+              <div><strong style={{ color: '#1f2d3d' }}>Monthly Salary:</strong> ${candidate.MonthlyIncome.toLocaleString()}</div>
+              <div><strong style={{ color: '#1f2d3d' }}>OverTime:</strong> {candidate.OverTime}</div>
               <div>
-                <strong style={{ color: '#E2E8F0' }}>Flight Probability:</strong>{' '}
-                <span style={{ color: '#F87171', fontWeight: 700 }}>{candidate.risk_score_pct}%</span>
+                <strong style={{ color: '#1f2d3d' }}>Flight Probability:</strong>{' '}
+                <span style={{ color: '#bf3b3b', fontWeight: 700 }}>{candidate.risk_score_pct}%</span>
               </div>
             </div>
 
             <button
               onClick={handleGenerate}
               disabled={isGenerating}
-              className="btn btn-ai-primary"
+              className="btn btn-primary"
               style={{ width: '100%', marginTop: '0.5rem' }}
             >
               <Sparkles size={16} />
-              {isGenerating ? 'Synthesizing Memo...' : '⚡ Generate Autonomous Action Memo'}
+              {isGenerating ? 'Creating note...' : '⚡ Create action note'}
             </button>
           </div>
         </div>
 
-        {/* Right: Generated Terminal Package */}
-        <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', background: 'rgba(255,255,255,0.72)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span className="badge-pending">
-              ● STATUS: PENDING_APPROVAL — HUMAN IN THE LOOP
+            <span style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              background: '#f1f4ff',
+              color: '#4156b8',
+              border: '1px solid rgba(91,110,225,0.18)',
+              borderRadius: '999px',
+              padding: '0.35rem 0.8rem',
+              fontSize: '0.72rem',
+              fontWeight: 700
+            }}>
+              ● STATUS: READY FOR HR REVIEW
             </span>
 
             {generatedMemo && (
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <button onClick={handleCopy} className="btn btn-secondary btn-pill">
-                  {copied ? <Check size={14} color="#34D399" /> : <Copy size={14} />}
+                  {copied ? <Check size={14} color="#2b8f6e" /> : <Copy size={14} />}
                   {copied ? 'Copied' : 'Copy'}
                 </button>
                 <button onClick={handleDownload} className="btn btn-secondary btn-pill">
                   <Download size={14} />
-                  Download (.md)
+                  Download (.txt)
                 </button>
               </div>
             )}
@@ -172,14 +160,14 @@ TechNova Solutions Global
 
           {generatedMemo ? (
             <div style={{
-              background: '#04060A',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              background: '#f4f6fb',
+              border: '1px solid rgba(93,108,131,0.12)',
               borderRadius: '12px',
               padding: '1.25rem',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.8rem',
-              lineHeight: 1.6,
-              color: '#CBD5E1',
+              fontFamily: 'inherit',
+              fontSize: '0.9rem',
+              lineHeight: 1.7,
+              color: '#2e425d',
               maxHeight: '440px',
               overflowY: 'auto',
               whiteSpace: 'pre-wrap'
@@ -193,16 +181,16 @@ TechNova Solutions Global
               alignItems: 'center',
               justifyContent: 'center',
               padding: '3rem 1.5rem',
-              background: 'rgba(0, 0, 0, 0.2)',
+              background: '#f5f7fb',
               borderRadius: '12px',
-              border: '1px dashed rgba(255, 255, 255, 0.1)',
+              border: '1px dashed rgba(93,108,131,0.18)',
               textAlign: 'center',
               color: '#64748B'
             }}>
-              <FileText size={36} style={{ marginBottom: '0.75rem', opacity: 0.5 }} />
-              <div style={{ fontWeight: 600, color: '#94A3B8' }}>No Memo Generated Yet</div>
-              <div style={{ fontSize: '0.8rem', maxWidth: '300px', marginTop: '4px' }}>
-                Select a candidate and click "Generate Autonomous Action Memo" to compile the personalized briefing package.
+              <FileText size={36} style={{ marginBottom: '0.75rem', opacity: 0.5, color: '#6a7a8f' }} />
+              <div style={{ fontWeight: 600, color: '#42516a' }}>No note yet</div>
+              <div style={{ fontSize: '0.8rem', maxWidth: '300px', marginTop: '4px', color: '#73829a' }}>
+                Pick someone and create the next HR message.
               </div>
             </div>
           )}

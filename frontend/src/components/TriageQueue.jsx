@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Search, Download, AlertTriangle, ArrowUpDown, CheckCircle, Clock } from 'lucide-react';
+import { Search, Download, AlertTriangle } from 'lucide-react';
+
+const avatarLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export default function TriageQueue({ watchlist, workflowStatus, setWorkflowStatus }) {
   const [search, setSearch] = useState('');
@@ -7,33 +9,31 @@ export default function TriageQueue({ watchlist, workflowStatus, setWorkflowStat
   const [roleFilter, setRoleFilter] = useState('ALL');
   const [selectedRank, setSelectedRank] = useState(1);
 
-  // Departments and Roles
+  const statusOptions = ['Waiting for follow-up', 'In review', 'Action plan started', 'Escalated', 'Resolved'];
+
   const depts = ['ALL', ...new Set(watchlist.map(w => w.Department))];
   const roles = ['ALL', ...new Set(watchlist.map(w => w.JobRole))];
 
-  // Filtering
+  const getEmployeeInitials = (emp) => {
+    const first = avatarLetters[(emp.EmployeeNumber + 3) % avatarLetters.length];
+    const second = avatarLetters[(emp.EmployeeNumber + 9) % avatarLetters.length];
+    return `${first}${second}`;
+  };
+
   const filtered = watchlist.filter(item => {
     const matchesDept = deptFilter === 'ALL' || item.Department === deptFilter;
     const matchesRole = roleFilter === 'ALL' || item.JobRole === roleFilter;
-    const matchesSearch = !search || 
+    const matchesSearch = !search ||
       item.EmployeeNumber.toString().includes(search) ||
-      item.JobRole.toLowerCase().includes(search.toLowerCase()) ||
-      item.top_3_risk_reasons.toLowerCase().includes(search.toLowerCase());
+      item.JobRole.toLowerCase().includes(search.toLowerCase());
     return matchesDept && matchesRole && matchesSearch;
   });
 
   const selectedCandidate = watchlist.find(w => w.rank === selectedRank) || watchlist[0];
-  const candidateStatus = workflowStatus[selectedCandidate.EmployeeNumber] || 'Pending HRBP Assignment';
-
-  const handleStatusChange = (newStatus) => {
-    setWorkflowStatus(prev => ({
-      ...prev,
-      [selectedCandidate.EmployeeNumber]: newStatus
-    }));
-  };
+  const candidateStatus = workflowStatus[selectedCandidate.EmployeeNumber] || 'Waiting for follow-up';
 
   const handleExportCSV = () => {
-    const headers = ['Rank', 'EmployeeNumber', 'JobRole', 'Department', 'MonthlyIncome', 'OverTime', 'RiskScorePct', 'Top3RiskReasons', 'RetentionRecommendation'];
+    const headers = ['Rank', 'EmployeeNumber', 'JobRole', 'Department', 'MonthlyIncome', 'OverTime', 'RiskScorePct'];
     const rows = watchlist.map(w => [
       w.rank,
       w.EmployeeNumber,
@@ -42,14 +42,12 @@ export default function TriageQueue({ watchlist, workflowStatus, setWorkflowStat
       w.MonthlyIncome,
       w.OverTime,
       w.risk_score_pct,
-      `"${w.top_3_risk_reasons}"`,
-      `"${w.concrete_retention_recommendation.replace(/\n/g, ' ')}"`
     ]);
     const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `TechNova_TalentGuard_Top50_${new Date().toISOString().slice(0,10)}.csv`);
+    link.setAttribute('download', `People_Review_List_${new Date().toISOString().slice(0,10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -57,151 +55,103 @@ export default function TriageQueue({ watchlist, workflowStatus, setWorkflowStat
 
   return (
     <div>
-      {/* Title & Controls */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '1rem',
-        marginBottom: '1.25rem'
-      }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
         <div>
-          <h2 style={{ fontSize: '1.35rem', fontWeight: 700, margin: 0 }}>
-            🎯 Monthly Retention Triage Queue (Top 50 Action Roster)
+          <h2 style={{ fontSize: '1.3rem', fontWeight: 800, margin: 0, color: '#213042' }}>
+            People review list
           </h2>
-          <p style={{ fontSize: '0.82rem', color: '#94A3B8', marginTop: '2px' }}>
-            Ranked priority cohort calibrated strictly to HR's 50-person monthly interview bottleneck.
+          <p style={{ fontSize: '0.82rem', color: '#6a7a8f', marginTop: '0.25rem' }}>
+            Top people to review this month, ranked by risk and urgency.
           </p>
         </div>
 
         <button onClick={handleExportCSV} className="btn btn-secondary btn-pill">
           <Download size={14} />
-          Export Queue (CSV)
+          Export list
         </button>
       </div>
 
-      {/* Filter Ribbon */}
-      <div className="glass-card" style={{ padding: '1rem 1.25rem', marginBottom: '1.25rem' }}>
+      <div className="glass-card" style={{ padding: '1rem 1.25rem', marginBottom: '1.25rem', background: 'rgba(255,255,255,0.72)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.75rem' }}>
           <div>
-            <label style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
-              Search Candidate ID / Keyword
+            <label style={{ fontSize: '0.75rem', color: '#6a7a8f', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+              Search by ID or role
             </label>
             <div style={{ position: 'relative' }}>
               <input
                 type="text"
-                placeholder="e.g. 1024 or Sales Rep..."
+                placeholder="Type employee ID or job"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="input-control"
                 style={{ paddingLeft: '2.2rem' }}
               />
-              <Search size={14} color="#64748B" style={{ position: 'absolute', left: '0.8rem', top: '50%', transform: 'translateY(-50%)' }} />
+              <Search size={14} color="#66758b" style={{ position: 'absolute', left: '0.8rem', top: '50%', transform: 'translateY(-50%)' }} />
             </div>
           </div>
 
           <div>
-            <label style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
-              Filter Division
+            <label style={{ fontSize: '0.75rem', color: '#6a7a8f', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+              Filter team
             </label>
-            <select
-              value={deptFilter}
-              onChange={(e) => setDeptFilter(e.target.value)}
-              className="input-control"
-            >
-              {depts.map(d => <option key={d} value={d} style={{ background: '#0F172A' }}>{d}</option>)}
+            <select value={deptFilter} onChange={(e) => setDeptFilter(e.target.value)} className="input-control">
+              {depts.map(d => <option key={d} value={d}>{d}</option>)}
             </select>
           </div>
 
           <div>
-            <label style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
-              Filter Job Family
+            <label style={{ fontSize: '0.75rem', color: '#6a7a8f', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+              Filter role
             </label>
-            <select
-              value={roleFilter}
-              onChange={(e) => setRoleFilter(e.target.value)}
-              className="input-control"
-            >
-              {roles.map(r => <option key={r} value={r} style={{ background: '#0F172A' }}>{r}</option>)}
+            <select value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)} className="input-control">
+              {roles.map(r => <option key={r} value={r}>{r}</option>)}
             </select>
           </div>
         </div>
       </div>
 
-      {/* Split Roster & Candidate Deep-Dive */}
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.4fr) minmax(320px, 1fr)', gap: '1.25rem' }}>
-        {/* Left: Scrollable Data Table */}
-        <div className="table-wrapper" style={{ maxHeight: '550px' }}>
+        <div className="table-wrapper" style={{ maxHeight: '550px', overflowY: 'auto' }}>
           <table className="custom-table">
             <thead>
               <tr>
                 <th>Priority</th>
-                <th>Employee</th>
-                <th>Division</th>
-                <th>Salary</th>
-                <th>OverTime</th>
-                <th>Flight Risk</th>
+                <th>Person</th>
+                <th>Team</th>
+                <th>Pay</th>
+                <th>Overtime</th>
+                <th>Risk</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map(row => {
                 const isSelected = row.rank === selectedCandidate.rank;
-                const riskColor = row.risk_score_pct >= 80 ? '#F43F5E' : row.risk_score_pct >= 65 ? '#F59E0B' : '#38BDF8';
+                const riskColor = row.risk_score_pct >= 80 ? '#D96262' : row.risk_score_pct >= 65 ? '#D29939' : '#3F82F6';
+                const initials = getEmployeeInitials(row);
                 return (
-                  <tr
-                    key={row.rank}
-                    onClick={() => setSelectedRank(row.rank)}
-                    style={{
-                      cursor: 'pointer',
-                      background: isSelected ? 'rgba(99, 102, 241, 0.12)' : 'transparent',
-                      borderLeft: isSelected ? '3px solid #6366F1' : '3px solid transparent'
-                    }}
-                  >
+                  <tr key={row.rank} onClick={() => setSelectedRank(row.rank)} style={{ cursor: 'pointer', background: isSelected ? 'rgba(91, 110, 225, 0.06)' : 'transparent', borderLeft: isSelected ? '3px solid #5b6ee1' : '3px solid transparent' }}>
+                    <td><span style={{ fontWeight: 700, fontFamily: 'var(--font-mono)', color: isSelected ? '#4c7ef5' : '#7a8aa0' }}>#{row.rank}</span></td>
                     <td>
-                      <span style={{
-                        fontWeight: 700,
-                        fontFamily: 'var(--font-mono)',
-                        color: isSelected ? '#818CF8' : '#94A3B8'
-                      }}>
-                        #{row.rank}
-                      </span>
-                    </td>
-                    <td>
-                      <div style={{ fontWeight: 600, color: '#FFFFFF' }}>{row.JobRole}</div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748B', fontFamily: 'var(--font-mono)' }}>
-                        ID #{row.EmployeeNumber}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                        <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#e9edf9', color: '#4052bf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.72rem' }}>
+                          {initials}
+                        </div>
+                        <div>
+                          <div style={{ fontWeight: 600, color: '#1f2d3d' }}>Employee #{row.EmployeeNumber}</div>
+                          <div style={{ fontSize: '0.72rem', color: '#6a7a8f', fontFamily: 'var(--font-mono)' }}>{row.JobRole}</div>
+                          <div style={{ fontSize: '0.7rem', fontWeight: 700, color: riskColor, marginTop: '2px' }}>
+                            Risk {row.risk_score_pct}%
+                          </div>
+                        </div>
                       </div>
                     </td>
-                    <td style={{ color: '#94A3B8', fontSize: '0.8rem' }}>{row.Department}</td>
-                    <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 600 }}>${row.MonthlyIncome.toLocaleString()}</td>
-                    <td>
-                      <span style={{
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        color: row.OverTime === 'Yes' ? '#FB7185' : '#34D399'
-                      }}>
-                        {row.OverTime}
-                      </span>
-                    </td>
+                    <td style={{ color: '#475a72', fontSize: '0.8rem' }}>{row.Department}</td>
+                    <td style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, color: '#1f2d3d' }}>${row.MonthlyIncome.toLocaleString()}</td>
+                    <td><span style={{ fontSize: '0.75rem', fontWeight: 600, color: row.OverTime === 'Yes' ? '#c35151' : '#2b8f6e' }}>{row.OverTime}</span></td>
                     <td style={{ width: '130px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <div className="progress-track">
-                          <div
-                            className="progress-fill"
-                            style={{ width: `${row.risk_score_pct}%`, background: riskColor }}
-                          />
-                        </div>
-                        <span style={{
-                          fontSize: '0.78rem',
-                          fontWeight: 700,
-                          fontFamily: 'var(--font-mono)',
-                          color: riskColor,
-                          width: '45px',
-                          textAlign: 'right'
-                        }}>
-                          {row.risk_score_pct}%
-                        </span>
+                        <div className="progress-track"><div className="progress-fill" style={{ width: `${row.risk_score_pct}%`, background: riskColor }} /></div>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 700, fontFamily: 'var(--font-mono)', color: riskColor, width: '45px', textAlign: 'right' }}>{row.risk_score_pct}%</span>
                       </div>
                     </td>
                   </tr>
@@ -211,113 +161,47 @@ export default function TriageQueue({ watchlist, workflowStatus, setWorkflowStat
           </table>
         </div>
 
-        {/* Right: Candidate Dossier & Retention Package */}
         <div className="glass-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span className="badge badge-critical">
-              <AlertTriangle size={12} />
-              {selectedCandidate.risk_score_pct}% FLIGHT RISK
-            </span>
-            <span style={{ fontSize: '0.75rem', color: '#94A3B8', fontFamily: 'var(--font-mono)' }}>
-              PRIORITY #{selectedCandidate.rank} • ID #{selectedCandidate.EmployeeNumber}
-            </span>
+            <span className="badge badge-red"><AlertTriangle size={12} /> {selectedCandidate.risk_score_pct}% risk</span>
+            <span style={{ fontSize: '0.75rem', color: '#6a7a8f', fontFamily: 'var(--font-mono)' }}>Priority #{selectedCandidate.rank}</span>
           </div>
 
-          <div>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0, color: '#FFFFFF' }}>
-              {selectedCandidate.JobRole}
-            </h3>
-            <p style={{ fontSize: '0.85rem', color: '#818CF8', marginTop: '2px' }}>
-              {selectedCandidate.Department}
-            </p>
-          </div>
-
-          {/* Quick Metrics Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '0.5rem',
-            background: 'rgba(0, 0, 0, 0.3)',
-            padding: '0.85rem',
-            borderRadius: '12px',
-            fontSize: '0.82rem'
-          }}>
-            <div>
-              <div style={{ color: '#64748B' }}>Monthly Salary</div>
-              <strong style={{ fontFamily: 'var(--font-mono)' }}>${selectedCandidate.MonthlyIncome.toLocaleString()}</strong>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: '#e9edf9', color: '#4052bf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1rem' }}>
+              {getEmployeeInitials(selectedCandidate)}
             </div>
             <div>
-              <div style={{ color: '#64748B' }}>Tenure</div>
-              <strong>{selectedCandidate.YearsAtCompany} Years</strong>
-            </div>
-            <div>
-              <div style={{ color: '#64748B' }}>Works OverTime</div>
-              <strong style={{ color: selectedCandidate.OverTime === 'Yes' ? '#FB7185' : '#34D399' }}>
-                {selectedCandidate.OverTime}
-              </strong>
-            </div>
-            <div>
-              <div style={{ color: '#64748B' }}>Cost if Lost</div>
-              <strong style={{ color: '#FB7185', fontFamily: 'var(--font-mono)' }}>
-                ${Math.round(selectedCandidate.MonthlyIncome * 7.5).toLocaleString()}
-              </strong>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0, color: '#1f2d3d' }}>Employee #{selectedCandidate.EmployeeNumber}</h3>
+              <p style={{ fontSize: '0.85rem', color: '#5e6f88', marginTop: '2px' }}>{selectedCandidate.JobRole} • {selectedCandidate.Department}</p>
             </div>
           </div>
 
-          {/* Diagnosed Flight Drivers */}
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
-              Diagnosed Flight Drivers (Evidence-Backed)
-            </div>
-            <div style={{
-              background: 'rgba(244, 63, 94, 0.08)',
-              border: '1px solid rgba(244, 63, 94, 0.2)',
-              borderRadius: '8px',
-              padding: '0.65rem 0.85rem',
-              fontSize: '0.8rem',
-              color: '#FECDD3',
-              lineHeight: 1.5
-            }}>
-              {selectedCandidate.top_3_risk_reasons}
-            </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.5rem', background: 'rgba(245,247,251,0.9)', padding: '0.85rem', borderRadius: '12px', fontSize: '0.82rem', border: '1px solid rgba(93,108,131,0.12)' }}>
+            <div><div style={{ color: '#6a7a8f' }}>Pay</div><strong style={{ fontFamily: 'var(--font-mono)', color: '#1f2d3d' }}>${selectedCandidate.MonthlyIncome.toLocaleString()}</strong></div>
+            <div><div style={{ color: '#6a7a8f' }}>Years</div><strong style={{ color: '#1f2d3d' }}>{selectedCandidate.YearsAtCompany}</strong></div>
+            <div><div style={{ color: '#6a7a8f' }}>Overtime</div><strong style={{ color: selectedCandidate.OverTime === 'Yes' ? '#c35151' : '#2b8f6e' }}>{selectedCandidate.OverTime}</strong></div>
+            <div><div style={{ color: '#6a7a8f' }}>Risk</div><strong style={{ color: '#1f2d3d' }}>{selectedCandidate.risk_score_pct}%</strong></div>
           </div>
 
-          {/* Recommended Retention Action */}
-          <div>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.35rem' }}>
-              Prescribed Retention Action Package
-            </div>
-            <div style={{
-              background: 'rgba(99, 102, 241, 0.08)',
-              border: '1px solid rgba(99, 102, 241, 0.25)',
-              borderRadius: '8px',
-              padding: '0.65rem 0.85rem',
-              fontSize: '0.82rem',
-              color: '#C7D2FE',
-              lineHeight: 1.6,
-              whiteSpace: 'pre-line'
-            }}>
-              {selectedCandidate.concrete_retention_recommendation}
-            </div>
-          </div>
-
-          {/* Workflow Status Selector */}
-          <div style={{ marginTop: 'auto', paddingTop: '0.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)' }}>
-            <label style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
-              HRBP Triage Status (Syncs to HRIS)
+          <div style={{ background: 'rgba(245,247,251,0.9)', border: '1px solid rgba(93,108,131,0.12)', borderRadius: '12px', padding: '0.9rem' }}>
+            <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 700, color: '#6a7a8f', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+              Review status
             </label>
             <select
               value={candidateStatus}
-              onChange={(e) => handleStatusChange(e.target.value)}
+              onChange={(e) => setWorkflowStatus(prev => ({ ...prev, [selectedCandidate.EmployeeNumber]: e.target.value }))}
               className="input-control"
-              style={{ fontWeight: 600, color: '#38BDF8' }}
             >
-              <option value="Pending HRBP Assignment">Pending HRBP Assignment</option>
-              <option value="Stay Interview Scheduled">Stay Interview Scheduled</option>
-              <option value="Compensation Parity Submitted">Compensation Parity Submitted</option>
-              <option value="Workload Rebalanced">Workload Rebalanced</option>
-              <option value="Case Resolved / Retained">Case Resolved / Retained</option>
+              {statusOptions.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
             </select>
+          </div>
+
+          <div style={{ background: 'rgba(245,247,251,0.9)', border: '1px solid rgba(93,108,131,0.12)', borderRadius: '12px', padding: '0.9rem' }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#6a7a8f', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Main reason</div>
+            <div style={{ fontSize: '0.9rem', color: '#1f2d3d', marginTop: '0.35rem', lineHeight: 1.5 }}>{selectedCandidate.top_3_risk_reasons.split('|')[0]}</div>
           </div>
         </div>
       </div>

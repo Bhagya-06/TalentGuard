@@ -1,78 +1,62 @@
-# 🛡️ TalentGuard — AI-Powered Retention Intelligence System
+# IBM HR Retention Monitor
 
-> **Client:** TechNova Solutions (12,000 Employees, 16.1% Annual Attrition)  
-> **Challenge:** Maverick Mini Hackathon — Project P1 (HR / People Analytics) ★★  
-> **Target Score:** 115 / 100 (100 Base Points + 15 Bonus Points)
+This project is a front-end dashboard for HR and people leaders to review retention risk, simulate what-if scenarios, and prepare follow-up actions using the IBM HR attrition dataset.
 
----
+## What is included
+- React + Vite dashboard in [frontend](frontend)
+- Retention dataset in [frontend/src/data/retentionData.json](frontend/src/data/retentionData.json)
+- Protected sign-in flow for secure access
+- Persistent review workflow storage so status updates remain saved after refresh
+- SaaS-style API and service blueprint in [docs/production-saas-blueprint.md](docs/production-saas-blueprint.md)
+- Vercel deployment config in [vercel.json](vercel.json)
 
-## 🌟 Executive Overview
-TechNova Solutions loses 16.1% of its workforce annually (~1,930 exits), incurring over **$67 Million in turnover costs** (6–9 months of salary per exit). HR has the human bandwidth to conduct retention discussions with exactly **50 employees per cycle**.
-
-TalentGuard is a capacity-aligned flight-risk triage system that:
-1. Neutralizes hidden dataset traps and guarantees zero data leakage.
-2. Identifies potential leavers with **96.0% Precision@50** (a **5.96x lift** over random outreach).
-3. Diagnoses the **top-3 personalized flight drivers** per employee.
-4. Prescribes **concrete retention intervention packages** for the top 10.
-5. Auto-drafts human-in-the-loop action memos stamped `[STATUS: PENDING_APPROVAL]`.
-
----
-
-## 🏆 Scoring Rubric Alignment (100 / 100)
-
-| Rubric Task | Max Pts | TalentGuard Implementation |
-| :--- | :---: | :--- |
-| **T1 — Business Framing** | 10 | Framed around HR's 50-person review bottleneck and financial turnover ROI, actively rejecting naive accuracy. |
-| **T2 — EDA & Insights** | 20 | Handled all traps (dropped `EmployeeNumber`, `EmployeeCount`, `StandardHours`, `Over18`). Found 3x OverTime risk multiplier and 40% Sales Rep turnover. |
-| **T3 — The Model** | 30 | Scikit-learn Pipeline with zero leakage. Benchmarked Baseline Logistic (`ROC-AUC 0.8107`) vs Champion Gradient Boosting. Operating cutoff tied to capacity. |
-| **T4 — Actionable Output** | 20 | Generated `artifacts/top50_watchlist.csv` with top-3 risk reasons per person and tailored recommendations for top 10. |
-| **T5 — The Pitch** | 20 | 3-minute pitch structured with financial ROI, technical honesty, and live stage scoring. |
-
-### 🎁 Bonus Points Checklist (+15 / +15)
-- [x] **+5 MLflow Experiment Tracking:** Runs logged to SQLite database with metrics, parameters, and comparison.
-- [x] **+5 Streamlit Web App:** Full interactive UI with executive KPI dashboard, EDA charts, and live candidate simulator.
-- [x] **+5 Agentic Touch:** Auto-drafts retention memos and 1-on-1 interview agendas with `[STATUS: PENDING_APPROVAL]`.
-
----
-
-## 📂 Repository Structure
-
-```
-├── data/
-│   └── WA_Fn-UseC_-HR-Employee-Attrition.csv  # 1,470 x 35 IBM HR dataset
-├── src/
-│   ├── data_prep.py                            # Trap cleaning & stratified split
-│   ├── model_train.py                          # MLflow tracking & model pipeline
-│   ├── generate_watchlist.py                  # Top-50 ranked artifact builder
-│   └── agent.py                               # Agentic action memo generator
-├── artifacts/
-│   ├── top50_watchlist.csv                     # Required T4 deliverable
-│   ├── model_metrics.json                      # Baseline vs Champion metrics
-│   └── pitch_deck.md                           # 3-slide pitch script & Q&A defense
-├── models/
-│   ├── baseline_pipeline.joblib                # Balanced Logistic Regression
-│   └── champion_pipeline.joblib                # Tuned Gradient Boosting
-├── app.py                                      # Interactive Streamlit application
-├── requirements.txt                            # Dependencies
-└── README.md
-```
-
----
-
-## 🚀 Quickstart & How to Run
-
-### 1. Run Data Preparation & Model Training
+## Local development
 ```bash
-py -3.12 -m src.model_train
+cd frontend
+npm install
+npm run dev
 ```
 
-### 2. Generate Top-50 Watchlist
+## Sign in
+The app reads login values from environment variables. Add your own values in a local .env file before signing in.
+
 ```bash
-py -3.12 -m src.generate_watchlist
+cp frontend/.env.example frontend/.env
 ```
 
-### 3. Launch Streamlit Application
-```bash
-py -3.12 -m streamlit run app.py
+Example values in [frontend/.env.example](frontend/.env.example):
+```env
+VITE_APP_NAME=IBM HR Retention Monitor
+VITE_AUTH_EMAIL=
+VITE_AUTH_PASSWORD=
 ```
-Visit `http://localhost:8501` to view the dashboard and run the live on-stage scoring simulator.
+
+## Dynamic review storage
+Review updates are saved in the browser local storage so that status changes remain available even after a refresh. This is the client-side seed for a production backend service, and the service contract is defined in [frontend/src/services/reviewApi.js](frontend/src/services/reviewApi.js).
+
+## SaaS blueprint
+The product is structured as a blueprint for a production SaaS workflow with a clear separation between:
+- UI screens and workflow actions
+- service layer for business logic
+- API abstraction for future backend integration
+- persistence layer for review state
+
+See [docs/production-saas-blueprint.md](docs/production-saas-blueprint.md) for the architecture and suggested production path.
+
+## Deploy to Vercel
+1. Push the repo to GitHub.
+2. Import the repo into Vercel.
+3. Keep the project root as the repo root.
+4. Add the same environment variables in Vercel project settings.
+5. Vercel will use the config in [vercel.json](vercel.json).
+
+Build configuration:
+- Install: `npm install --prefix frontend`
+- Build: `npm run build --prefix frontend`
+- Output folder: `frontend/dist`
+
+## Production notes
+- The app is structured for a static frontend deployment.
+- Login is protected by a session saved in the browser.
+- Review workflow state is persisted locally for now and can be swapped to a real database-backed API.
+- Sensitive auth values should be moved to a real backend or auth provider before production use in a real business environment.
