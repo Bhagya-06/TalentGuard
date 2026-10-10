@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import KpiBento from './components/KpiBento';
+import RetentionAdvisor from './components/RetentionAdvisor';
 import TriageQueue from './components/TriageQueue';
 import WhatIfStudio from './components/WhatIfStudio';
 import ActionEngine from './components/ActionEngine';
@@ -9,7 +10,7 @@ import GovernanceView from './components/GovernanceView';
 import retentionData from './data/retentionData.json';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState('triage');
+  const [currentTab, setCurrentTab] = useState('advisor');
   const [workflowStatus, setWorkflowStatus] = useState({});
 
   const handledCount = Object.keys(workflowStatus).length;
@@ -23,11 +24,22 @@ export default function App() {
         handledCount={handledCount}
       />
 
-      {/* Bento Metric Cards */}
-      <KpiBento metadata={retentionData.metadata} />
+      {/* Talento Hero Balance Card & Category Boxes */}
+      <KpiBento
+        metadata={retentionData.metadata}
+        onSelectCategory={(tab) => setCurrentTab(tab)}
+      />
 
       {/* Active Module View */}
       <main>
+        {currentTab === 'advisor' && (
+          <RetentionAdvisor
+            watchlist={retentionData.top50Watchlist}
+            workflowStatus={workflowStatus}
+            setWorkflowStatus={setWorkflowStatus}
+          />
+        )}
+
         {currentTab === 'triage' && (
           <TriageQueue
             watchlist={retentionData.top50Watchlist}

@@ -1,41 +1,60 @@
 /* ==============================================================================
-   TALENTGUARD™ ENTERPRISE DESIGN SYSTEM
-   Modern AI Application Design Tokens, Typography & Micro-Interactions
+   TALENTO UI KIT DESIGN SYSTEM (Inspire by Talento HR Management App)
+   Clean, Friendly, Modern Enterprise SaaS with Crisp Pastels & Gradients
 ============================================================================== */
 
 :root {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Color Theory Palette */
-  --bg-canvas: #07090F;
-  --bg-surface: #0D121D;
-  --bg-card: rgba(15, 22, 35, 0.75);
-  --bg-card-hover: rgba(22, 32, 50, 0.85);
+  /* Talento Modern Light Palette */
+  --bg-app: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F1F5F9;
   
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(255, 255, 255, 0.1);
-  --border-glow: rgba(99, 102, 241, 0.45);
+  --border-subtle: #E2E8F0;
+  --border-card: #ECEEF2;
   
-  /* Primary AI Spectrum */
-  --primary: #6366F1;
-  --primary-hover: #4F46E5;
-  --primary-glow: rgba(99, 102, 241, 0.35);
-  --accent-violet: #8B5CF6;
-  --accent-cyan: #06B6D4;
+  /* Talento Royal Brand Gradient */
+  --primary: #5B4DFB;
+  --primary-hover: #4B3DF5;
+  --primary-gradient: linear-gradient(135deg, #5B4DFB 0%, #7B68EE 100%);
+  --primary-glow: rgba(91, 77, 251, 0.25);
   
-  /* Semantic Signals */
-  --emerald-500: #10B981;
-  --emerald-glow: rgba(16, 185, 129, 0.25);
-  --rose-500: #F43F5E;
-  --rose-glow: rgba(244, 63, 94, 0.25);
-  --amber-500: #F59E0B;
-  --amber-glow: rgba(245, 158, 11, 0.25);
+  /* Status Accent Colors (From Talento UI Kit) */
+  --accent-red: #FF6B6B;
+  --accent-red-bg: #FFF5F5;
+  --accent-red-border: #FFC9C9;
   
-  /* Typography Colors */
-  --text-main: #FFFFFF;
-  --text-muted: #94A3B8;
-  --text-dim: #64748B;
+  --accent-green: #20C997;
+  --accent-green-bg: #E6FCF5;
+  --accent-green-border: #96F2D7;
+  
+  --accent-orange: #FF922B;
+  --accent-orange-bg: #FFF4E6;
+  --accent-orange-border: #FFD8A8;
+  
+  --accent-blue: #339AF0;
+  --accent-blue-bg: #E7F5FF;
+  --accent-blue-border: #A5D8FF;
+  
+  --accent-purple: #845EF7;
+  --accent-purple-bg: #F3F0FF;
+  --accent-purple-border: #D0BFFF;
+
+  /* Typography */
+  --text-title: #0F172A;
+  --text-body: #334155;
+  --text-muted: #64748B;
+  --text-dim: #94A3B8;
+  
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  
+  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  --shadow-hover: 0 10px 25px -3px rgba(15, 23, 42, 0.08);
 }
 
 * {
@@ -46,17 +65,11 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-canvas);
-  color: var(--text-main);
+  background-color: var(--bg-app);
+  color: var(--text-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 10% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 85%, rgba(139, 92, 246, 0.07) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 60%);
-  background-attachment: fixed;
 }
 
 /* Custom Scrollbars */
@@ -65,14 +78,116 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-canvas);
+  background: var(--bg-app);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 9999px;
+  background: #CBD5E1;
+  border-radius: var(--radius-full);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
+}
+
+/* App Container */
+.app-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem 2rem;
+}
+
+/* ==============================================================================
+   TALENTO CARDS & SURFACES
+============================================================================== */
+.talento-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.talento-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: #E2E8F0;
+}
+
+/* The Vibrant Talento Hero Balance Card */
+.talento-balance-card {
+  background: linear-gradient(135deg, #5B4DFB 0%, #6E56CF 50%, #7C3AED 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  color: #FFFFFF;
+  box-shadow: 0 12px 30px -8px rgba(91, 77, 251, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.talento-balance-card::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Talento Pill Category Boxes (From inspiration image) */
+.talento-status-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1.5px solid;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.talento-status-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.talento-status-box.red {
+  border-color: var(--accent-red);
+  background: #FFFBFB;
+}
+.talento-status-box.orange {
+  border-color: var(--accent-orange);
+  background: #FFFDF9;
+}
+.talento-status-box.green {
+  border-color: var(--accent-green);
+  background: #F8FDFB;
+}
+.talento-status-box.blue {
+  border-color: var(--accent-blue);
+  background: #F8FBFE;
+}
+
+/* Avatar Group (Overlapping circles like inspiration UI) */
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+.avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  margin-left: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+.avatar-circle:first-child {
+  margin-left: 0;
 }
 
 /* ==============================================================================
@@ -85,165 +200,124 @@ body {
   gap: 0.5rem;
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   padding: 0.65rem 1.25rem;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
 }
 
-/* AI Primary Glowing Button */
-.btn-ai-primary {
-  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+.btn-primary {
+  background: var(--primary);
   color: #FFFFFF;
-  box-shadow: 0 4px 15px var(--primary-glow);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px var(--primary-glow);
 }
-.btn-ai-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
-  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-}
-.btn-ai-primary:active {
-  transform: translateY(0);
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(91, 77, 251, 0.35);
 }
 
-/* Secondary Translucent Button */
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-main);
-  border: 1px solid var(--border-subtle);
+.btn-white {
+  background: #FFFFFF;
+  color: var(--primary);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+.btn-white:hover {
+  background: #F8FAFC;
   transform: translateY(-1px);
 }
 
-/* Small Pill Button */
+.btn-secondary {
+  background: #F1F5F9;
+  color: var(--text-body);
+}
+.btn-secondary:hover {
+  background: #E2E8F0;
+}
+
 .btn-pill {
-  padding: 0.4rem 0.9rem;
-  border-radius: 9999px;
-  font-size: 0.78rem;
+  border-radius: var(--radius-full);
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
 }
 
 /* ==============================================================================
-   CARD & GLASSMORPHISM SURFACES
-============================================================================== */
-.glass-card {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-card);
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  transition: all 0.25s ease;
-}
-.glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-/* ==============================================================================
-   BADGES & STATUS SIGNALS
+   BADGES & PILLS
 ============================================================================== */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.badge-critical {
-  background: rgba(244, 63, 94, 0.12);
-  color: #FB7185;
-  border: 1px solid rgba(244, 63, 94, 0.3);
-}
-.badge-high {
-  background: rgba(245, 158, 11, 0.12);
-  color: #FBBF24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
-}
-.badge-retained {
-  background: rgba(16, 185, 129, 0.12);
-  color: #34D399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-.badge-pending {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.15) 100%);
-  color: #FCD34D;
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  padding: 0.4rem 0.9rem;
-  border-radius: 8px;
-  font-family: var(--font-mono);
+  gap: 0.35rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--radius-full);
   font-size: 0.75rem;
   font-weight: 700;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
 }
 
-/* Telemetry Pulse Animation */
-.dot-pulse {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--emerald-500);
-  box-shadow: 0 0 8px var(--emerald-500);
-  animation: pulseDot 2s infinite;
+.badge-red {
+  background: var(--accent-red-bg);
+  color: #E03131;
+  border: 1px solid var(--accent-red-border);
 }
-@keyframes pulseDot {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+.badge-green {
+  background: var(--accent-green-bg);
+  color: #099268;
+  border: 1px solid var(--accent-green-border);
+}
+.badge-orange {
+  background: var(--accent-orange-bg);
+  color: #E8590C;
+  border: 1px solid var(--accent-orange-border);
+}
+.badge-purple {
+  background: var(--accent-purple-bg);
+  color: var(--primary);
+  border: 1px solid var(--accent-purple-border);
 }
 
 /* ==============================================================================
    INPUTS & SLIDERS
 ============================================================================== */
 .input-control {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-main);
+  background: #F8FAFC;
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-title);
   padding: 0.65rem 1rem;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   outline: none;
   transition: all 0.2s ease;
   width: 100%;
 }
 .input-control:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-  background: rgba(255, 255, 255, 0.07);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(91, 77, 251, 0.15);
 }
 
-/* Range Sliders */
+/* Custom Sliders */
 input[type="range"] {
   -webkit-appearance: none;
   width: 100%;
   height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
+  background: #E2E8F0;
+  border-radius: var(--radius-full);
   outline: none;
 }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366F1, #8B5CF6);
+  background: var(--primary);
   cursor: pointer;
   border: 2px solid #FFFFFF;
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 2px 6px rgba(91, 77, 251, 0.4);
   transition: transform 0.1s ease;
 }
 input[type="range"]::-webkit-slider-thumb:hover {
@@ -255,52 +329,44 @@ input[type="range"]::-webkit-slider-thumb:hover {
 ============================================================================== */
 .table-wrapper {
   overflow-x: auto;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  background: rgba(13, 18, 29, 0.6);
+  background: #FFFFFF;
 }
 .custom-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
 }
 .custom-table th {
-  background: rgba(255, 255, 255, 0.03);
+  background: #F8FAFC;
   padding: 0.85rem 1.15rem;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1.5px solid var(--border-subtle);
 }
 .custom-table td {
   padding: 0.85rem 1.15rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  color: var(--text-main);
+  border-bottom: 1px solid #F1F5F9;
+  color: var(--text-body);
 }
 .custom-table tr:hover td {
-  background: rgba(99, 102, 241, 0.05);
+  background: #F8FAFC;
 }
 
-/* Progress bar inside table */
 .progress-track {
   width: 100%;
   height: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
+  background: #EDF2F7;
+  border-radius: var(--radius-full);
   overflow: hidden;
 }
 .progress-fill {
   height: 100%;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   transition: width 0.4s ease;
-}
-
-/* Layout Utilities */
-.app-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.5rem 1.5rem 3rem 1.5rem;
 }

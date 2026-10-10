@@ -1,121 +1,135 @@
 import React from 'react';
-import { Shield, Sparkles, Activity, Layers, Sliders, Bot, BarChart3, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Layers, Sliders, Bot, BarChart3, CheckCircle2, Lightbulb, Bell } from 'lucide-react';
 
 export default function Header({ currentTab, setCurrentTab, handledCount }) {
   const tabs = [
-    { id: 'triage', label: 'Priority Roster (Top 50)', icon: Layers },
-    { id: 'simulator', label: 'What-If Studio', icon: Sliders },
-    { id: 'agent', label: 'Autonomous Action Drafter', icon: Bot },
-    { id: 'analytics', label: 'Macro Analytics', icon: BarChart3 },
-    { id: 'governance', label: 'ML Governance Audit', icon: CheckCircle2 },
+    { id: 'advisor', label: '💡 HR Retention Advisor (Why & What to Do)', isFeatured: true },
+    { id: 'triage', label: '🎯 Priority Queue (Top 50)', isFeatured: false },
+    { id: 'simulator', label: '👤 What-If Studio', isFeatured: false },
+    { id: 'agent', label: '🤖 Autonomous Action Drafter', isFeatured: false },
+    { id: 'analytics', label: '📊 Macro Analytics', isFeatured: false },
+    { id: 'governance', label: '⚙️ ML Governance Audit', isFeatured: false },
   ];
 
   return (
     <header style={{ marginBottom: '1.75rem' }}>
-      {/* Top Banner */}
+      {/* Top Talento Navigation Bar */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '1.25rem 1.75rem',
-        background: 'rgba(15, 23, 42, 0.7)',
-        backdropFilter: 'blur(24px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        padding: '1rem 1.75rem',
+        background: '#FFFFFF',
         borderRadius: '20px',
-        boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.5)',
+        border: '1.5px solid #F1F5F9',
+        boxShadow: '0 4px 20px -2px rgba(15, 23, 42, 0.04)',
         marginBottom: '1.25rem'
       }}>
-        {/* Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {/* Talento Flower Brand */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <div style={{
-            width: '46px',
-            height: '46px',
+            width: '42px',
+            height: '42px',
             borderRadius: '12px',
-            background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)',
+            background: 'linear-gradient(135deg, #5B4DFB 0%, #7C3AED 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 8px 20px -4px rgba(99, 102, 241, 0.5)'
+            boxShadow: '0 6px 16px -2px rgba(91, 77, 251, 0.35)'
           }}>
-            <Shield size={24} color="#FFFFFF" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="white" />
+            </svg>
           </div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <h1 style={{
-                fontSize: '1.5rem',
+                fontSize: '1.45rem',
                 fontWeight: 800,
+                color: '#0F172A',
                 letterSpacing: '-0.02em',
-                background: 'linear-gradient(135deg, #FFFFFF 40%, #94A3B8 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
                 margin: 0
               }}>
-                TalentGuard™
+                Talento
               </h1>
-              <span style={{
-                background: 'rgba(99, 102, 241, 0.15)',
-                color: '#818CF8',
-                border: '1px solid rgba(99, 102, 241, 0.3)',
-                padding: '2px 8px',
-                borderRadius: '6px',
-                fontSize: '0.7rem',
-                fontWeight: 700,
-                letterSpacing: '0.04em'
-              }}>
-                ENTERPRISE AI
+              <span className="badge badge-purple" style={{ fontSize: '0.7rem' }}>
+                HR Retention AI
               </span>
             </div>
-            <p style={{ fontSize: '0.82rem', color: '#94A3B8', marginTop: '2px' }}>
-              Autonomous Flight-Risk Detection & Retention Protocol | TechNova Solutions
+            <p style={{ fontSize: '0.78rem', color: '#64748B', margin: 0 }}>
+              TechNova People Operations & Retention Intelligence
             </p>
           </div>
         </div>
 
-        {/* Telemetry Status Strip */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {/* Right Status Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <div style={{
-            display: 'inline-flex',
+            display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
+            gap: '0.45rem',
             padding: '0.4rem 0.9rem',
             borderRadius: '9999px',
-            background: 'rgba(16, 185, 129, 0.08)',
-            border: '1px solid rgba(16, 185, 129, 0.25)',
-            color: '#34D399',
+            background: '#E6FCF5',
+            border: '1px solid #96F2D7',
+            color: '#099268',
             fontSize: '0.75rem',
-            fontWeight: 600,
-            fontFamily: 'var(--font-mono)'
+            fontWeight: 700
           }}>
-            <span className="dot-pulse"></span>
-            HRIS LIVE • 12,000 NODES MONITORED
+            <span style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              background: '#20C997',
+              boxShadow: '0 0 8px #20C997'
+            }} />
+            HRIS Telemetry Connected (12k Staff)
           </div>
 
           <div style={{
-            padding: '0.4rem 0.9rem',
-            borderRadius: '10px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.4rem',
+            padding: '0.45rem 0.85rem',
+            borderRadius: '12px',
+            background: '#F8FAFC',
+            border: '1px solid #E2E8F0',
             fontSize: '0.78rem',
-            fontWeight: 600,
-            color: '#CBD5E1'
+            fontWeight: 700,
+            color: '#334155'
           }}>
-            Triage: <strong style={{ color: '#38BDF8' }}>{handledCount}/50</strong> Handled
+            Triage Progress: <strong style={{ color: '#5B4DFB' }}>{handledCount}/50</strong>
+          </div>
+
+          <div style={{
+            width: '38px',
+            height: '38px',
+            borderRadius: '10px',
+            background: '#F8FAFC',
+            border: '1px solid #E2E8F0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#64748B',
+            cursor: 'pointer'
+          }}>
+            <Bell size={18} />
           </div>
         </div>
       </div>
 
-      {/* Modern Navigation Bar */}
+      {/* Navigation Pills Bar */}
       <nav style={{
         display: 'flex',
         gap: '0.5rem',
-        background: 'rgba(13, 18, 29, 0.5)',
+        background: '#FFFFFF',
         padding: '0.4rem',
-        borderRadius: '14px',
-        border: '1px solid rgba(255, 255, 255, 0.06)',
+        borderRadius: '16px',
+        border: '1.5px solid #F1F5F9',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.02)',
         overflowX: 'auto'
       }}>
         {tabs.map((tab) => {
-          const Icon = tab.icon;
           const isActive = currentTab === tab.id;
           return (
             <button
@@ -124,21 +138,22 @@ export default function Header({ currentTab, setCurrentTab, handledCount }) {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem',
+                gap: '0.45rem',
                 padding: '0.65rem 1.15rem',
-                borderRadius: '10px',
+                borderRadius: '12px',
                 border: 'none',
-                background: isActive ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.2) 100%)' : 'transparent',
-                color: isActive ? '#FFFFFF' : '#94A3B8',
-                boxShadow: isActive ? 'inset 0 0 0 1px rgba(99, 102, 241, 0.4), 0 4px 12px rgba(99, 102, 241, 0.15)' : 'none',
-                fontWeight: isActive ? 700 : 500,
+                background: isActive 
+                  ? 'linear-gradient(135deg, #5B4DFB 0%, #7C3AED 100%)' 
+                  : (tab.isFeatured ? '#F8F7FF' : 'transparent'),
+                color: isActive ? '#FFFFFF' : (tab.isFeatured ? '#5B4DFB' : '#64748B'),
+                fontWeight: isActive ? 700 : (tab.isFeatured ? 700 : 600),
                 fontSize: '0.84rem',
                 cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                whiteSpace: 'nowrap'
+                transition: 'all 0.15s ease',
+                whiteSpace: 'nowrap',
+                boxShadow: isActive ? '0 4px 14px rgba(91, 77, 251, 0.3)' : 'none'
               }}
             >
-              <Icon size={16} color={isActive ? '#818CF8' : '#64748B'} />
               {tab.label}
             </button>
           );
